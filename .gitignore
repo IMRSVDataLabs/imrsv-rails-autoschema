@@ -1,0 +1,7 @@
+# Usual Python junk
+__pycache__
+*.egg-info
+.eggs
+
+# Virtual environment
+/venv

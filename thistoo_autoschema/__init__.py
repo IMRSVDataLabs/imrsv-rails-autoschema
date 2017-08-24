@@ -1,14 +1,6 @@
-#! /usr/bin/env python3
-
 '''
 Fully automatic SQLAlchemy introspection of Rails DB.
 '''
-
-# Dependencies:
-# - SQLAlchemy
-# - psycopg2
-# - IPython
-# - inflect
 
 from os import environ
 import re
@@ -50,24 +42,3 @@ for _class_name, _class in AutomapBase.classes.items():
     if _class_name not in dir():
         locals()[_class_name] = _class
         __all__ = __all__ + (_class_name,)
-
-
-if __name__ == '__main__':
-    from argparse import ArgumentParser
-
-    import IPython
-
-    argument_parser = ArgumentParser(
-        description='IPython shell to SQLAlchemy/Rails DB')
-    argument_parser.parse_args()
-
-    # Simple:
-    #     IPython.start_ipython(user_ns=locals())
-    # No namespace pollution:
-    ns = {k: v
-          for k, v
-          in locals().items()
-          if k in __all__}
-    # except for all the junk with which IPython pollutes the local namespace.
-    ns['session'] = Session()
-    IPython.start_ipython(user_ns=ns)
