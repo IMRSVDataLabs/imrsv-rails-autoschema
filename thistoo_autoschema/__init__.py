@@ -38,7 +38,10 @@ Session = orm.sessionmaker(engine)
 __all__ = 'Session',
 
 
+# Automatically populate the current namespace with all the automatically
+# discovered tables, à la Rails.
+_internal_rails_tables = {'ar_internal_metadata', 'schema_migrations'}
 for _class_name, _class in AutomapBase.classes.items():
-    if _class_name not in dir():
+    if _class_name not in dir() and _class_name not in _internal_rails_tables:
         locals()[_class_name] = _class
         __all__ = __all__ + (_class_name,)
