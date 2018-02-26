@@ -4,6 +4,7 @@ from setuptools import setup
 setup(
     name='thistoo-autoschema',
     version='0.1',
+    license='License :: Public Domain',
     install_requires=[
         'SQLAlchemy',
         'psycopg2',
