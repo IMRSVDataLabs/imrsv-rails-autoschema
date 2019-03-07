@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 import IPython
 
-import thistoo_autoschema
+from imrsv import rails_autoschema
 
 argument_parser = ArgumentParser(
     description='IPython shell to SQLAlchemy/Rails DB')
@@ -13,8 +13,8 @@ argument_parser.parse_args()
 # No namespace pollution:
 ns = {k: v
       for k, v
-      in thistoo_autoschema.__dict__.items()
-      if k in thistoo_autoschema.__all__}
+      in rails_autoschema.__dict__.items()
+      if k in rails_autoschema.__all__}
 # except for all the junk with which IPython pollutes the local namespace.
-ns['session'] = thistoo_autoschema.Session()
+ns['session'] = rails_autoschema.Session()
 IPython.start_ipython(user_ns=ns)
